@@ -1,0 +1,33 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tb_users {
+  id       Int    @id @default(autoincrement())
+  name     String
+  password String
+  username String @unique
+  email    String @unique
+}
+
+model tb_menu {
+  id         Int    @id @default(autoincrement())
+  name       String
+  price      String
+  imageSrc   String
+  imageAlt   String
+  menuTypeId Int
+}
+
+model tb_menu_type {
+  menu_type_id Int    @id @default(autoincrement())
+  menu_name    String
+}
